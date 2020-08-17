@@ -7,11 +7,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
 } from "reactstrap";
 
 export default function NavigationBar(): JSX.Element {
@@ -27,26 +22,11 @@ export default function NavigationBar(): JSX.Element {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/clients/">Clients</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/products/">
-                Products
+              <NavLink href="/devices/">
+                Devices
               </NavLink>
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Actions
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Create client</DropdownItem>
-                <DropdownItem>Update client</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
           </Nav>
-          <NavbarText>Username</NavbarText>
         </Collapse>
       </Navbar>
     </div>
