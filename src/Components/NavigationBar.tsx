@@ -17,7 +17,7 @@ export default function NavigationBar(): JSX.Element {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Application name</NavbarBrand>
+        <NavbarBrand href="/">Network Topology</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
