@@ -1,13 +1,13 @@
+import Devices from "devices/Devices";
+import Hello from "hello/Hello";
 import React from "react";
-import "./App.css";
-import NavigationBar from "./Components/NavigationBar";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+
+  Route, Switch
 } from "react-router-dom";
-import Devices from "devices/Devices";
+import "./App.css";
+import NavigationBar from "./Components/NavigationBar";
 
 function App() {
   return (
@@ -19,6 +19,9 @@ function App() {
           <Switch>
             <Route path="/devices">
               <Devices />
+            </Route>
+            <Route path="/hello">
+              <Hello />
             </Route>
 
           </Switch>

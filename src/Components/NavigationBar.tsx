@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import {
   Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
+
+
+
+  Nav, Navbar,
+
+  NavbarBrand, NavbarToggler,
+
+
   NavItem,
-  NavLink,
+  NavLink
 } from "reactstrap";
 
 export default function NavigationBar(): JSX.Element {
@@ -24,6 +28,11 @@ export default function NavigationBar(): JSX.Element {
             <NavItem>
               <NavLink href="/devices/">
                 Devices
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/hello">
+                Hello
               </NavLink>
             </NavItem>
           </Nav>
