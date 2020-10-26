@@ -1,7 +1,7 @@
 import React from "react";
 
 import {
-    Table,
+    Table, Button,
 } from "reactstrap";
 import { Device } from "./redux/devices-state";
 
@@ -16,6 +16,10 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                 {["Name"].map((name) => (
                     <th scope="col">{name}</th>
                 ))}
+
+                {["Delete Device"].map((name) => (
+                    <th scope="col">{name}</th>
+                ))}
             </tr>
         </thead>
         <tbody>
@@ -24,6 +28,10 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                     <tr key={device.id}>
                         <th scope="row">
                             {device.name}
+                        </th>
+
+                        <th scope="row">
+                        <Button outline color="danger" onClick={ (e) => console.log("checkbox '" + device.name + "' is checked")}>Delete</Button>
                         </th>
                     </tr>
                 );
