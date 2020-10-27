@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import Devices from "devices/Devices";
 
-///
+//comment
 
 function App() {
   return (
