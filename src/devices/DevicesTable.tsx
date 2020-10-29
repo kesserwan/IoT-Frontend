@@ -32,7 +32,8 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                         </th>
 
                         <th scope="row">
-                        <Button outline color="danger" onClick={ (e) => console.log( devicesService.delete(device.id)) }>Delete</Button>
+                        
+                        <Button outline color="danger" onClick={ (e) => console.log( devicesService.delete(device.id), console.log(window.location.reload(false)) ) }>Delete</Button>
                         
                         </th>
                     </tr>

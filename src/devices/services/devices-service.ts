@@ -24,8 +24,21 @@ class DevicesService {
         return await this.devices();
     }
 
+    /*async delete(name: any,): Promise<Device[]> {
+        await this.http.delete(
+            "/"+name,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin",
+                    Accept: "application/json",
+                },
+            }
+        );
+        return await this.devices();
+    }*/
     delete(id: any) {
-        axios.delete("localhost:8080/device/"+id);
+        axios.post("http://localhost:8080/devices/delete/"+id);
         return id;
     }
 
@@ -35,6 +48,7 @@ class DevicesService {
             {
                 headers: {
                     "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
                     Accept: "application/json",
                 },
             }
