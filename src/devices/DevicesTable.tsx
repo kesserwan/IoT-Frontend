@@ -31,7 +31,7 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                         </th>
 
                         <th scope="row">
-                        <Button outline color="danger" onClick={ (e) => console.log("checkbox '" + device.name + "' is checked")}>Delete</Button>
+                        <Button outline color="danger" onClick={ (e) => delete(device.name)}>Delete</Button>
                         </th>
                     </tr>
                 );

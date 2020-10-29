@@ -8,6 +8,8 @@ import {
   Link
 } from "react-router-dom";
 import Devices from "devices/Devices";
+import Device2 from "devices/device2";
+
 
 //comment
 
@@ -21,6 +23,10 @@ function App() {
           <Switch>
             <Route path="/devices">
               <Devices />
+            </Route>
+
+            <Route path="/device2">
+              <Device2 />
             </Route>
 
           </Switch>

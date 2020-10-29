@@ -24,6 +24,21 @@ class DevicesService {
         return await this.devices();
     }
 
+    async delete(name: string,): Promise<Device[]> {
+        await this.http.post(
+            "/post2",
+            { name, },
+            {
+               headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+               } 
+            }
+        );
+        
+        return await this.devices();
+    }
+
     async devices(): Promise<Device[]> {
         const result = await this.http.get(
             "/",
