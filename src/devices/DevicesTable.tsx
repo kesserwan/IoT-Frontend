@@ -4,6 +4,7 @@ import {
     Table, Button,
 } from "reactstrap";
 import { Device } from "./redux/devices-state";
+import devicesService from "devices/services/devices-service";
 
 interface DevicesTableProps {
     devices?: Device[];
@@ -31,7 +32,8 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                         </th>
 
                         <th scope="row">
-                        <Button outline color="danger" onClick={ (e) => delete(device.name)}>Delete</Button>
+                        <Button outline color="danger" onClick={ (e) => console.log( devicesService.delete(device.id)) }>Delete</Button>
+                        
                         </th>
                     </tr>
                 );

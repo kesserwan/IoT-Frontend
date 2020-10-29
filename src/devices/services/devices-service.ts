@@ -24,19 +24,9 @@ class DevicesService {
         return await this.devices();
     }
 
-    async delete(name: string,): Promise<Device[]> {
-        await this.http.post(
-            "/post2",
-            { name, },
-            {
-               headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-               } 
-            }
-        );
-        
-        return await this.devices();
+    delete(id: any) {
+        axios.delete("localhost:8080/device/"+id);
+        return id;
     }
 
     async devices(): Promise<Device[]> {
