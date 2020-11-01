@@ -4,8 +4,7 @@ import NavigationBar from "./Components/NavigationBar";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Devices from "devices/Devices";
 import HelpPage from "Help/HelpPage"

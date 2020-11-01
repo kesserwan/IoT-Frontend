@@ -7,7 +7,6 @@ import {
     Container,
     Row,
     Col,
-    Table,
 } from "reactstrap";
 import { actions as devicesActions } from "./redux/devices-actions";
 import { actions as systemActions } from "../redux/system-actions";

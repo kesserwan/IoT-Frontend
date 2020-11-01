@@ -10,7 +10,7 @@ import {
     Button,
 } from "reactstrap";
 import { useForm, Controller } from "react-hook-form";
-import { Device } from "./redux/devices-state";
+//import { Device } from "./redux/devices-state";
 
 interface FormInput {
     name: string;
@@ -22,7 +22,7 @@ interface DevicesFormProps {
 }
 
 export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProps): JSX.Element {
-    const { register, errors, control, handleSubmit } = useForm<FormInput>();
+    const { /*register,*/ errors, control, handleSubmit } = useForm<FormInput>();
     const onSubmit = (data: FormInput) => {
         onCreateDevice(data.name);
     };

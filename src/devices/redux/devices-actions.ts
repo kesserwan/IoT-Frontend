@@ -3,7 +3,7 @@ import { ThunkAction } from "redux-thunk";
 import { RootState } from "redux/root-reducer";
 import { Action } from "redux";
 import devicesService from "devices/services/devices-service";
-import { v4 as uuidv4 } from "uuid";
+
 
 export enum DevicesActionType {
   LOADING = "DEVICES_LOADING",
