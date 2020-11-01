@@ -8,9 +8,7 @@ import {
   Link
 } from "react-router-dom";
 import Devices from "devices/Devices";
-import Device2 from "devices/device2";
-
-
+import HelpPage from "Help/HelpPage"
 
 //comment
 
@@ -26,8 +24,8 @@ function App() {
               <Devices />
             </Route>
 
-            <Route path="/device2">
-              <Device2 />
+            <Route path="/help">
+              <HelpPage />
             </Route>
 
           </Switch>
