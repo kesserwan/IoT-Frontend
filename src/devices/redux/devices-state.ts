@@ -8,4 +8,5 @@ export interface DevicesState {
 export interface Device {
     id?: number;
     name?: string;
+    macAddress?: string;
 }

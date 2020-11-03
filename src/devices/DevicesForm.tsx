@@ -14,17 +14,18 @@ import { useForm, Controller } from "react-hook-form";
 
 interface FormInput {
     name: string;
+    macAddress: string;
 }
 
 interface DevicesFormProps {
     loading: boolean;
-    onCreateDevice: (name: string) => void;
+    onCreateDevice: (name: string, macAddress: string) => void;
 }
 
 export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProps): JSX.Element {
     const { /*register,*/ errors, control, handleSubmit } = useForm<FormInput>();
     const onSubmit = (data: FormInput) => {
-        onCreateDevice(data.name);
+        onCreateDevice(data.name, data.macAddress);
     };
 
     return <Card className="col-lg-6">
@@ -42,6 +43,23 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                         defaultValue=""
                         placeholder="Name"
                         id="device-name"
+                        rules={{ required: true }}
+                    />
+                    {errors.name &&
+                        <div className="alert alert-danger" role="alert">
+                            <strong>Device name</strong> is required
+                                </div>}
+                </FormGroup>
+
+
+                <FormGroup>            
+                    <Controller
+                        as={Input}
+                        name="macAddress"
+                        control={control}
+                        defaultValue=""
+                        placeholder="Mac Address"
+                        id="macAddress"
                         rules={{ required: true }}
                     />
                     {errors.name &&
