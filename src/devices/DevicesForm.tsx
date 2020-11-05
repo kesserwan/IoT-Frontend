@@ -15,17 +15,20 @@ import { useForm, Controller } from "react-hook-form";
 interface FormInput {
     name: string;
     macAddress: string;
+    ip: string;
 }
 
 interface DevicesFormProps {
     loading: boolean;
-    onCreateDevice: (name: string, macAddress: string) => void;
+    onCreateDevice: (name: string, macAddress: string, ip: string) => void;
 }
 
 export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProps): JSX.Element {
-    const { /*register,*/ errors, control, handleSubmit } = useForm<FormInput>();
+    const { errors, control, handleSubmit } = useForm<FormInput>();
     const onSubmit = (data: FormInput) => {
-        onCreateDevice(data.name, data.macAddress);
+        console.log("name: "+data.name+" Mac: "+data.macAddress);
+        window.location.reload()
+        onCreateDevice(data.name, data.macAddress, data.ip);
     };
 
     return <Card className="col-lg-6">
@@ -34,6 +37,7 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
         </CardHeader>
         <CardBody>
             <Form onSubmit={handleSubmit(onSubmit)}>
+                
                 <FormGroup>
                     <Label for="device-name">Name</Label>
                     <Controller
@@ -60,6 +64,22 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                         defaultValue=""
                         placeholder="Mac Address"
                         id="macAddress"
+                        rules={{ required: true }}
+                    />
+                    {errors.name &&
+                        <div className="alert alert-danger" role="alert">
+                            <strong>Device name</strong> is required
+                                </div>}
+                </FormGroup>
+
+                <FormGroup>            
+                    <Controller
+                        as={Input}
+                        name="ip"
+                        control={control}
+                        defaultValue=""
+                        placeholder="IP Address"
+                        id="ip"
                         rules={{ required: true }}
                     />
                     {errors.name &&

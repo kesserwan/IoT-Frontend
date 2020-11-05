@@ -9,8 +9,10 @@ class DevicesService {
         });
     }
 
-    async create(name: string, macAddress: string): Promise<Device[]> {
-        await this.http.post(
+    async create(name: string, macAddress: string, ip: string): Promise<Device[]> {
+        console.log("name: "+name+" Mac: "+macAddress);
+        /*
+         await this.http.post(
             "/",
             { name, macAddress, },
             {
@@ -20,9 +22,16 @@ class DevicesService {
                 },
             }
         );
+        */
+        axios.post("http://localhost:3000/devices", {
+            "name": name,
+            "macAddress": macAddress,
+            "ip": ip
+          });
 
         return await this.devices();
     }
+    
 
     /*async delete(name: any,): Promise<Device[]> {
         await this.http.delete(
@@ -38,7 +47,7 @@ class DevicesService {
         return await this.devices();
     }*/
     delete(id: any) {
-        axios.post("http://localhost:8080/devices/delete/"+id);
+        axios.delete("http://localhost:3000/devices/delete/"+id);
         return id;
     }
 
@@ -65,6 +74,7 @@ class DevicesService {
                 id: device.id,
                 name: device.name,
                 macAddress: device.macAddress,
+                ip: device.ip,
             };
         });
     }

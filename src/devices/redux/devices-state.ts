@@ -9,4 +9,5 @@ export interface Device {
     id?: number;
     name?: string;
     macAddress?: string;
+    ip?: string;
 }
