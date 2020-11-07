@@ -9,7 +9,7 @@ class DevicesService {
         });
     }
 
-    async create(name: string, macAddress: string, ip: string): Promise<Device[]> {
+    async create(name: string, macAddress: string, ip: string, isGateway: boolean): Promise<Device[]> {
         console.log("name: "+name+" Mac: "+macAddress);
         /*
          await this.http.post(
@@ -23,10 +23,12 @@ class DevicesService {
             }
         );
         */
+       
         axios.post("http://localhost:3000/devices", {
             "name": name,
             "macAddress": macAddress,
-            "ip": ip
+            "ip": ip,
+            "gateway": isGateway
           });
 
         return await this.devices();
@@ -75,6 +77,7 @@ class DevicesService {
                 name: device.name,
                 macAddress: device.macAddress,
                 ip: device.ip,
+                gateway: device.isGateway
             };
         });
     }

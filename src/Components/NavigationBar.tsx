@@ -28,6 +28,12 @@ export default function NavigationBar(): JSX.Element {
             </NavItem>
 
             <NavItem>
+              <NavLink href="/enrollment/">
+                Enrollment Page
+              </NavLink>
+            </NavItem>
+
+            <NavItem>
               <NavLink href="/help/">
                 Help
               </NavLink>

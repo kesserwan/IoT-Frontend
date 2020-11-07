@@ -7,7 +7,8 @@ import {
   Route
 } from "react-router-dom";
 import Devices from "devices/Devices";
-import HelpPage from "Help/HelpPage"
+import HelpPage from "Help/HelpPage";
+import EnrollmentPage from "Enrollment/EnrollmentPage";
 
 //comment
 
@@ -25,6 +26,10 @@ function App() {
 
             <Route path="/help">
               <HelpPage />
+            </Route>
+
+            <Route path="/enrollment">
+              <EnrollmentPage />
             </Route>
 
           </Switch>

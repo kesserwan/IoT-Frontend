@@ -29,6 +29,10 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                 {["IP Address"].map((name) => (
                     <th scope="col">{name}</th>
                 ))}
+
+                {["Is Gateway"].map((name) => (
+                    <th scope="col">{name}</th>
+                ))}
             </tr>
         </thead>
         <tbody>
@@ -52,6 +56,11 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
 
                         <th scope="row">
                         <label>{device.ip}</label>
+                        </th>
+
+                        <th scope="row">
+                        {console.log("test out: "+device.isGateway)}    
+                        <label>{device.isGateway?.valueOf}</label>
                         </th>
                     </tr>
                 );

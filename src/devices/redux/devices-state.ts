@@ -10,4 +10,5 @@ export interface Device {
     name?: string;
     macAddress?: string;
     ip?: string;
+    isGateway?: boolean;
 }
