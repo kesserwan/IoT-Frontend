@@ -16,14 +16,10 @@ import {
 } from "reactstrap";
 import { useForm, Controller } from "react-hook-form";
 import { Checkbox } from "@material-ui/core";
-import { Device } from "./redux/devices-state";
-import devicesService from "devices/services/devices-service";
 //import { Checkbox } from "@material-ui/core";
 //import { Device } from "./redux/devices-state";
 
-interface DevicesTableProps {
-    devices?: Device[];
-}
+
 
 interface FormInput {
     name: string;
@@ -41,7 +37,7 @@ interface DevicesFormProps {
 
 
 
-export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProps, { devices }: DevicesTableProps): JSX.Element {
+export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProps): JSX.Element {
     var testBol = false;
     const { errors, control, handleSubmit } = useForm<FormInput>();
     var [state, setState] = React.useState(false);
@@ -68,13 +64,11 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
     };
     
     return <Card className="col-lg-6">
-        
-        {/*DEVICE ENROLLMENT*/}
         <CardHeader>
-            <h3 className="mb-0">DEVICE ENROLLEMENT</h3>
+            <h3 className="mb-0">GATEWAY ENROLLEMENT</h3>
         </CardHeader>
         <CardBody>
-            <Form onSubmit={handleSubmit(onSubmitDevice)}>
+            <Form onSubmit={handleSubmit(onSubmitGateway)}>
                 
                 <FormGroup>
                     <Label for="device-name">Name</Label>
@@ -124,35 +118,10 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                         <div className="alert alert-danger" role="alert">
                             <strong>IP Address</strong> is required
                                 </div>}
-                </FormGroup>
+                </FormGroup>    
 
                 
-                        
-                    
-
-                <Dropdown isOpen={state} toggle={() => handleClick(!state)}>
-                    <DropdownToggle caret>Select Device Type</DropdownToggle>
-                    <DropdownMenu>
-                    
-
-                    <DropdownItem onClick={() => console.log("dropdown A")} dropDownValue="Prod A">
-                        Prod A
-                    </DropdownItem>
-                    <DropdownItem onClick={() => console.log("dropdown B")} dropDownValue="Prod B">
-                        Prod B
-                    </DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
-                {devices?.map((device) => {
-                return (
-                    <tr key={device.id}>
-                        <th scope="row">
-                            {device.name}
-                        </th>
-                        </tr>
-                );
-                }
-                )}
+                
 
                 <Button
                     type="submit"
@@ -163,6 +132,7 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                 </Button>
             </Form>
         </CardBody>
-        {/* */}
+
+       
     </Card>;
 }

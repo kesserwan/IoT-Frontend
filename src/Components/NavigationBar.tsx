@@ -21,15 +21,16 @@ export default function NavigationBar(): JSX.Element {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
+            
+            <NavItem>
+              <NavLink href="/enrollment/">
+                Enrollment
+              </NavLink>
+            </NavItem>
+            
             <NavItem>
               <NavLink href="/devices/">
                 Devices
-              </NavLink>
-            </NavItem>
-
-            <NavItem>
-              <NavLink href="/enrollment/">
-                Enrollment Page
               </NavLink>
             </NavItem>
 

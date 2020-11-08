@@ -44,26 +44,13 @@ class DevicesService {
     }
 
     async devices(): Promise<Device[]> {
-        /*
-        const result = await this.http.get(
-            "http://localhost:3000/devices",
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                    Accept: "application/json",
-                },
-            }
-        );*/
+      
         const result = axios.get("http://localhost:3000/devices/test");
         const data = (await result).data;
-        console.log(data)
 
         if (data === undefined) {
             return Promise.resolve([]);
         }
-
-        
 
         return data.map((device: any) => {
             return {

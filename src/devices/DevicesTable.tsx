@@ -62,7 +62,7 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                         </th>
 
                         <th scope="row">
-                        {console.log("test out: "+device.isGateway)}   
+                          
                         <label>{ (device.isGateway || 'false').toString()}</label>
                         </th>
                         
