@@ -10,19 +10,9 @@ class DevicesService {
     }
 
     async create(name: string, macAddress: string, ip: string, isGateway: boolean): Promise<Device[]> {
-        console.log("name: "+name+" Mac: "+macAddress);
-        /*
-         await this.http.post(
-            "/",
-            { name, macAddress, },
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
-            }
-        );
-        */
+        console.log("name: "+name+" isGateway"+isGateway);
+     
+        
        
         axios.post("http://localhost:3000/devices", {
             "name": name,
@@ -54,8 +44,9 @@ class DevicesService {
     }
 
     async devices(): Promise<Device[]> {
+        /*
         const result = await this.http.get(
-            "/",
+            "http://localhost:3000/devices",
             {
                 headers: {
                     "Content-Type": "application/json",
@@ -63,13 +54,16 @@ class DevicesService {
                     Accept: "application/json",
                 },
             }
-        );
-
-        const data = result.data;
+        );*/
+        const result = axios.get("http://localhost:3000/devices/test");
+        const data = (await result).data;
+        console.log(data)
 
         if (data === undefined) {
             return Promise.resolve([]);
         }
+
+        
 
         return data.map((device: any) => {
             return {
@@ -77,7 +71,7 @@ class DevicesService {
                 name: device.name,
                 macAddress: device.macAddress,
                 ip: device.ip,
-                gateway: device.isGateway
+                isGateway: device.gateway
             };
         });
     }
