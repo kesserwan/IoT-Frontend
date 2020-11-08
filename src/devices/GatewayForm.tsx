@@ -114,6 +114,10 @@ export default function GatewayForm({ loading, onCreateDevice }: GatewayFormProp
                         </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
+                    {errors.name &&
+                        <div className="alert alert-danger" role="alert">
+                            <strong>Device Type</strong> is required
+                                </div>}
                 </FormGroup>
                 
                 <Button
@@ -121,7 +125,7 @@ export default function GatewayForm({ loading, onCreateDevice }: GatewayFormProp
                     color="success"
                     disabled={loading}
                 >
-                    Submit
+                    Add Gateway
                 </Button>
             </Form>
         </CardBody>

@@ -120,6 +120,10 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                         </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
+                    {errors.name &&
+                        <div className="alert alert-danger" role="alert">
+                            <strong>Device Type</strong> is required
+                                </div>}
                 </FormGroup>
     
                 <Button
@@ -127,7 +131,7 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                     color="success"
                     disabled={loading}
                 >
-                    Submit
+                    Add Device
                 </Button>
             </Form>
         </CardBody>

@@ -10,15 +10,20 @@ interface DevicesTableProps {
     devices?: Device[];
 }
 
+function gatewayLabelGen (isGateway?: boolean) {
+    if(isGateway) {
+        return "Gateway"
+    }else{
+        return "Device"
+    }
+}
+
 export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
+    
     return <Table className="align-items-center" responsive hover striped>
         <thead className="thead-light">
             <tr>
                 {["Name"].map((name) => (
-                    <th scope="col">{name}</th>
-                ))}
-
-                {["Delete Device"].map((name) => (
                     <th scope="col">{name}</th>
                 ))}
 
@@ -30,11 +35,15 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                     <th scope="col">{name}</th>
                 ))}
 
-                {["Is Gateway"].map((name) => (
+                {["Connection Type"].map((name) => (
+                    <th scope="col">{name}</th>
+                ))}
+                
+                {["Device Type"].map((name) => (
                     <th scope="col">{name}</th>
                 ))}
 
-                {["Device Type"].map((name) => (
+                {["Delete Device"].map((name) => (
                     <th scope="col">{name}</th>
                 ))}
             </tr>
@@ -48,13 +57,6 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                         </th>
 
                         <th scope="row">
-                        <Button outline color="danger" onClick={ (e) => 
-                            console.log( devicesService.delete(device.id), 
-                            window.location.reload()
-                            ) }>Delete</Button>
-                        </th>
-
-                        <th scope="row">
                         <label>{device.macAddress}</label>
                         </th>
 
@@ -63,11 +65,18 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                         </th>
 
                         <th scope="row">
-                        <label>{ (device.isGateway || 'false').toString()}</label>
-                        </th>
-
-                        <th scope="row">
                         <label>{device.deviceType}</label>
+                        </th>
+                        
+                        <th scope="row">
+                        <label>{ gatewayLabelGen(device.isGateway) }</label>
+                        </th>
+                        
+                        <th scope="row">
+                        <Button outline color="danger" onClick={ (e) => 
+                            console.log( devicesService.delete(device.id), 
+                            window.location.reload()
+                            ) }>Delete</Button>
                         </th>
                         
                     </tr>
