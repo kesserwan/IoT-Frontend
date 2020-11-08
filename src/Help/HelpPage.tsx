@@ -68,14 +68,17 @@ export default function VerticalTabs() {
         aria-label="Vertical tabs example"
         className={classes.tabs}
       >
-        <Tab label="Item One" {...a11yProps(0)} />
-        <Tab label="Item Two" {...a11yProps(1)} />
-        <Tab label="Item Three" {...a11yProps(2)} />
-        <Tab label="Item Four" {...a11yProps(3)} />
+        <Tab label="Adding A Device" {...a11yProps(0)} />
+        <Tab label="Removing A Device" {...a11yProps(1)} />
+        <Tab label="Locating IP" {...a11yProps(2)} />
+        <Tab label="Locating Mac Address" {...a11yProps(3)} />
         
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item One
+        <div>
+          <h3>Adding a Device</h3>
+        </div>
+        To add a device to 
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two

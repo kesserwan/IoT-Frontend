@@ -35,7 +35,6 @@ function Devices({
     devices,
     createDevice,
     loadDevices,
-    notify,
 }: Props) {
 
     useEffect(() => {

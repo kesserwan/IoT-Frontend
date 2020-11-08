@@ -10,8 +10,6 @@ import Devices from "devices/Devices";
 import HelpPage from "Help/HelpPage";
 import EnrollmentPage from "Enrollment/EnrollmentPage";
 
-//comment
-
 function App() {
   return (
     <div>

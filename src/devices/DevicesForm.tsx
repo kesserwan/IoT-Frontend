@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import React from "react";
 import {
     Card,
     CardHeader,
@@ -15,11 +15,7 @@ import {
   
 } from "reactstrap";
 import { useForm, Controller } from "react-hook-form";
-import { Checkbox } from "@material-ui/core";
 import { Device } from "./redux/devices-state";
-import devicesService from "devices/services/devices-service";
-//import { Checkbox } from "@material-ui/core";
-//import { Device } from "./redux/devices-state";
 
 interface DevicesTableProps {
     devices?: Device[];
@@ -34,37 +30,21 @@ interface FormInput {
 
 interface DevicesFormProps {
     loading: boolean;
-    onCreateDevice: (name: string, macAddress: string, ip: string, isGateway: boolean) => void;
+    onCreateDevice: (name: string, macAddress: string, ip: string, isGateway: boolean, deviceType: string) => void;
 }
 
-
-
-
-
 export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProps, { devices }: DevicesTableProps): JSX.Element {
-    var testBol = false;
     const { errors, control, handleSubmit } = useForm<FormInput>();
     var [state, setState] = React.useState(false);
-    const onSubmitGateway = (data: FormInput) => {
-        console.log("name: "+data.name+" Mac: "+data.macAddress);
-        window.location.reload()
-        
-        onCreateDevice(data.name, data.macAddress, data.ip, true);
-        
-        console.log("is gateway: "+state);
-    };
+    var [deviceType, setDeviceType] = React.useState('Select Device Type');
 
     const handleClick = (event: React.SetStateAction<boolean>) => {
         setState(event)
     }
 
     const onSubmitDevice = (data: FormInput) => {
-        console.log("name: "+data.name+" Mac: "+data.macAddress);
         window.location.reload()
-        
-        onCreateDevice(data.name, data.macAddress, data.ip, false);
-        
-        console.log("is gateway: "+state);
+        onCreateDevice(data.name, data.macAddress, data.ip, false, deviceType);
     };
     
     return <Card className="col-lg-6">
@@ -92,7 +72,6 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                             <strong>Device name</strong> is required
                                 </div>}
                 </FormGroup>
-
 
                 <FormGroup>            
                     <Controller
@@ -126,34 +105,23 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                                 </div>}
                 </FormGroup>
 
-                
-                        
-                    
-
-                <Dropdown isOpen={state} toggle={() => handleClick(!state)}>
-                    <DropdownToggle caret>Select Device Type</DropdownToggle>
-                    <DropdownMenu>
-                    
-
-                    <DropdownItem onClick={() => console.log("dropdown A")} dropDownValue="Prod A">
-                        Prod A
-                    </DropdownItem>
-                    <DropdownItem onClick={() => console.log("dropdown B")} dropDownValue="Prod B">
-                        Prod B
-                    </DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
-                {devices?.map((device) => {
-                return (
-                    <tr key={device.id}>
-                        <th scope="row">
-                            {device.name}
-                        </th>
-                        </tr>
-                );
-                }
-                )}
-
+                <FormGroup>  
+                    <Dropdown isOpen={state} toggle={() => handleClick(!state)}>
+                        <DropdownToggle caret>{deviceType}</DropdownToggle>
+                        <DropdownMenu>
+                        <DropdownItem onClick={() =>  setDeviceType("WiFi") } dropDownValue="Prod A">
+                            WiFi
+                        </DropdownItem>
+                        <DropdownItem onClick={() => setDeviceType("Zigbee")} dropDownValue="Prod B">
+                            Zigbee
+                        </DropdownItem>
+                        <DropdownItem onClick={() => setDeviceType("Z-Wave")} dropDownValue="Prod B">
+                            Z-Wave
+                        </DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                </FormGroup>
+    
                 <Button
                     type="submit"
                     color="success"
@@ -163,6 +131,6 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                 </Button>
             </Form>
         </CardBody>
-        {/* */}
+
     </Card>;
 }

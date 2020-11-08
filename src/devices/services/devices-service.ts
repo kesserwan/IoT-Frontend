@@ -9,35 +9,18 @@ class DevicesService {
         });
     }
 
-    async create(name: string, macAddress: string, ip: string, isGateway: boolean): Promise<Device[]> {
-        console.log("name: "+name+" isGateway"+isGateway);
-     
-        
-       
+    async create(name: string, macAddress: string, ip: string, isGateway: boolean, deviceType: String): Promise<Device[]> {
         axios.post("http://localhost:3000/devices", {
             "name": name,
             "macAddress": macAddress,
             "ip": ip,
-            "gateway": isGateway
+            "gateway": isGateway,
+            "deviceType": deviceType
           });
 
         return await this.devices();
     }
     
-
-    /*async delete(name: any,): Promise<Device[]> {
-        await this.http.delete(
-            "/"+name,
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin",
-                    Accept: "application/json",
-                },
-            }
-        );
-        return await this.devices();
-    }*/
     delete(id: any) {
         axios.delete("http://localhost:3000/devices/delete/"+id);
         return id;
@@ -58,11 +41,11 @@ class DevicesService {
                 name: device.name,
                 macAddress: device.macAddress,
                 ip: device.ip,
-                isGateway: device.gateway
+                isGateway: device.gateway,
+                deviceType: device.deviceType
             };
         });
     }
-
 }
 
 const devicesService = new DevicesService(

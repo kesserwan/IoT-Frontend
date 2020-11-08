@@ -10,9 +10,6 @@ interface DevicesTableProps {
     devices?: Device[];
 }
 
-
-
-
 export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
     return <Table className="align-items-center" responsive hover striped>
         <thead className="thead-light">
@@ -34,6 +31,10 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                 ))}
 
                 {["Is Gateway"].map((name) => (
+                    <th scope="col">{name}</th>
+                ))}
+
+                {["Device Type"].map((name) => (
                     <th scope="col">{name}</th>
                 ))}
             </tr>
@@ -62,8 +63,11 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                         </th>
 
                         <th scope="row">
-                          
                         <label>{ (device.isGateway || 'false').toString()}</label>
+                        </th>
+
+                        <th scope="row">
+                        <label>{device.deviceType}</label>
                         </th>
                         
                     </tr>
