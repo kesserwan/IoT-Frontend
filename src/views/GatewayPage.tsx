@@ -12,7 +12,8 @@ import { actions as devicesActions } from "../devices/redux/devices-actions";
 import { actions as systemActions } from "../redux/system-actions";
 import DevicesForm from "../devices/DevicesForm";
 import GatewayForm from "../devices/GatewayForm";
-import { DevicesTable } from "../devices/DevicesTable";
+import { DevicesTable } from "../devices/Tables/DevicesTable";
+import GatewayTable from "../devices/Tables/GatewayTable";
 
 const mapState = (state: RootState) => ({
     loading: state.devices.loading,
@@ -46,12 +47,11 @@ function Devices({
             <Container className="mt--6 d-flex justify-content-center" >
                 <Col >
                     <Row className="justify-content-md-center">
-                        <DevicesForm onCreateDevice={createDevice} loading={loading} />
                         <GatewayForm onCreateDevice={createDevice} loading={loading} />
                     </Row>
 
                     <Row className="mt-5 justify-content-md-center">
-                        <DevicesTable devices={devices} />
+                        <GatewayTable devices={devices} />
                     </Row>
                 </Col>
 

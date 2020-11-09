@@ -3,19 +3,11 @@ import React from "react";
 import {
     Table, Button,
 } from "reactstrap";
-import { Device } from "./redux/devices-state";
+import { Device } from "../redux/devices-state";
 import devicesService from "devices/services/devices-service";
 
 interface DevicesTableProps {
     devices?: Device[];
-}
-
-function gatewayLabelGen (isGateway?: boolean) {
-    if(isGateway) {
-        return "Gateway"
-    }else{
-        return "Device"
-    }
 }
 
 export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
@@ -38,10 +30,6 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                 {["Connection Type"].map((name) => (
                     <th scope="col">{name}</th>
                 ))}
-                
-                {["Device Type"].map((name) => (
-                    <th scope="col">{name}</th>
-                ))}
 
                 {["Delete Device"].map((name) => (
                     <th scope="col">{name}</th>
@@ -50,6 +38,9 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
         </thead>
         <tbody>
             {devices?.map((device) => {
+                
+                if(!device.isGateway){
+
                 return (
                     <tr key={device.id}>
                         <th scope="row">
@@ -69,10 +60,6 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                         </th>
                         
                         <th scope="row">
-                        <label>{ gatewayLabelGen(device.isGateway) }</label>
-                        </th>
-                        
-                        <th scope="row">
                         <Button outline color="danger" onClick={ (e) => 
                             console.log( devicesService.delete(device.id), 
                             window.location.reload()
@@ -80,8 +67,10 @@ export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
                         </th>
                         
                     </tr>
-                );
+                ); }
+
             })}
+            
         </tbody>
     </Table>;
 }

@@ -6,9 +6,10 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Devices from "devices/Devices";
-import HelpPage from "Help/HelpPage";
-import EnrollmentPage from "Enrollment/EnrollmentPage";
+import HelpPage from "views/HelpPage";
+import DevicePage from "views/DevicesPage";
+import Data from "views/Data";
+import GatewayPage from "views/GatewayPage";
 
 function App() {
   return (
@@ -16,18 +17,22 @@ function App() {
       <Router>
         <div>
           <NavigationBar />
-
           <Switch>
-            <Route path="/devices">
-              <Devices />
+
+            <Route path="/devicepage">
+              <DevicePage />
             </Route>
 
-            <Route path="/help">
+            <Route path="/gatewaypage">
+              <GatewayPage />
+            </Route>
+
+            <Route path="/data">
+              <Data />
+            </Route>
+
+            <Route path="/helppage">
               <HelpPage />
-            </Route>
-
-            <Route path="/enrollment">
-              <EnrollmentPage />
             </Route>
 
           </Switch>

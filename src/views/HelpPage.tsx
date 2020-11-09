@@ -62,7 +62,7 @@ export default function VerticalTabs() {
     <div className={classes.root}>
       <Tabs
         orientation="vertical"
-        variant="scrollable"
+        variant="standard"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
@@ -78,16 +78,25 @@ export default function VerticalTabs() {
         <div>
           <h3>Adding a Device</h3>
         </div>
-        To add a device to 
+        To add a device you simply add a Name for the device, add the Mac Address of the device, add the IP Address of the device.
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <div>
+          <h3>Removing a Device</h3>
+        </div>
+        To remove a device you find the name of the device you would like to delete and click the DELETE button.
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <div>
+          <h3>Finding an IP Address</h3>
+        </div>
+        To find your devices IP you look on the devices settings page of your device and locate it there.
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+        <div>
+          <h3>Finding an MAC Address</h3>
+        </div>
+        To find the devices MAC Address you go to your device settings, go to network settings, and locate it there.
       </TabPanel>
       
     </div>

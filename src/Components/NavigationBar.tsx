@@ -23,19 +23,25 @@ export default function NavigationBar(): JSX.Element {
           <Nav className="mr-auto" navbar>
             
             <NavItem>
-              <NavLink href="/enrollment/">
-                Enrollment
-              </NavLink>
-            </NavItem>
-            
-            <NavItem>
-              <NavLink href="/devices/">
+              <NavLink href="/devicepage/">
                 Devices
               </NavLink>
             </NavItem>
 
             <NavItem>
-              <NavLink href="/help/">
+              <NavLink href="/gatewaypage/">
+                Gateways
+              </NavLink>
+            </NavItem>
+            
+            <NavItem>
+              <NavLink href="/data/">
+                Data
+              </NavLink>
+            </NavItem>
+
+            <NavItem>
+              <NavLink href="/helppage/">
                 Help
               </NavLink>
             </NavItem>

@@ -8,11 +8,11 @@ import {
     Row,
     Col,
 } from "reactstrap";
-import { actions as devicesActions } from "./redux/devices-actions";
+import { actions as devicesActions } from "../devices/redux/devices-actions";
 import { actions as systemActions } from "../redux/system-actions";
-import DevicesForm from "./DevicesForm";
-import GatewayForm from "./GatewayForm";
-import { DevicesTable } from "./DevicesTable";
+import DevicesForm from "../devices/DevicesForm";
+import GatewayForm from "../devices/GatewayForm";
+import { DevicesTable } from "../devices/Tables/DevicesTable";
 
 const mapState = (state: RootState) => ({
     loading: state.devices.loading,
@@ -35,7 +35,6 @@ function Devices({
     devices,
     createDevice,
     loadDevices,
-    notify,
 }: Props) {
 
     useEffect(() => {
@@ -46,7 +45,9 @@ function Devices({
         <>
             <Container className="mt--6 d-flex justify-content-center" >
                 <Col >
-                   
+                    <Row className="justify-content-md-center">
+                        <DevicesForm onCreateDevice={createDevice} loading={loading} />
+                    </Row>
 
                     <Row className="mt-5 justify-content-md-center">
                         <DevicesTable devices={devices} />
