@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
-
-import { RootState } from "redux/root-reducer";
-
 import {
-    Container,
-    Row,
-    Col,
-    Table,
+    Col, Container,
+
+
+
+    Dropdown,
+
+    DropdownItem,
+
+    DropdownMenu,
+    DropdownToggle, Row
 } from "reactstrap";
-import { actions as devicesActions } from "./redux/devices-actions";
+import { RootState } from "redux/root-reducer";
 import { actions as systemActions } from "../redux/system-actions";
 import DevicesForm from "./DevicesForm";
 import { DevicesTable } from "./DevicesTable";
+import { actions as devicesActions } from "./redux/devices-actions";
+
+
 
 const mapState = (state: RootState) => ({
     loading: state.devices.loading,
@@ -38,6 +44,9 @@ function Devices({
     notify,
 }: Props) {
 
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggle = () => { setDropdownOpen(!dropdownOpen) }
     useEffect(() => {
         loadDevices();
     }, []);
@@ -52,6 +61,19 @@ function Devices({
 
                     <Row className="mt-5 justify-content-md-center">
                         <DevicesTable devices={devices} />
+                    </Row>
+
+                    <Row>
+                    <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+                        <DropdownToggle caret>
+                            Our devices
+                            </DropdownToggle>
+                        <DropdownMenu>
+                            {devices?.filter(device => device.name == "tt").map(device => {
+                                return <DropdownItem>{device.name}</DropdownItem>
+                            })}
+                        </DropdownMenu>
+                    </Dropdown>
                     </Row>
                 </Col>
 
