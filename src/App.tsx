@@ -13,7 +13,7 @@ import GatewayPage from "views/GatewayPage";
 
 function App() {
   return (
-    <div>
+    <div className = "backgroundcolorchange">
       <Router>
         <div>
           <NavigationBar />
