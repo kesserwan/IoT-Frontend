@@ -46,6 +46,14 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
         window.location.reload()
         onCreateDevice(data.name, data.macAddress, data.ip, false, deviceType);
     };
+
+    function deviceTypeError(){
+        if(deviceType == "Select Device Type") {
+            return <div className="alert alert-danger" role="alert">
+                    <strong>Device Type</strong> is required
+                </div>
+        }
+    }
     
     return <Card className="col-lg-6">
         
@@ -83,7 +91,7 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                         id="macAddress"
                         rules={{ required: true }}
                     />
-                    {errors.name &&
+                    {errors.macAddress &&
                         <div className="alert alert-danger" role="alert">
                             <strong>Mac Address</strong> is required
                                 </div>}
@@ -99,7 +107,7 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                         id="ip"
                         rules={{ required: true }}
                     />
-                    {errors.name &&
+                    {errors.ip &&
                         <div className="alert alert-danger" role="alert">
                             <strong>IP Address</strong> is required
                                 </div>}
@@ -115,11 +123,12 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                         <DropdownItem onClick={() => setDeviceType("Zigbee")} dropDownValue="Prod B">
                             Zigbee
                         </DropdownItem>
-                        <DropdownItem onClick={() => setDeviceType("Z-Wave")} dropDownValue="Prod B">
+                        <DropdownItem onClick={() => setDeviceType("Z-Wave")} dropDownValue="Prod C">
                             Z-Wave
                         </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
+                    
                     {errors.name &&
                         <div className="alert alert-danger" role="alert">
                             <strong>Device Type</strong> is required
