@@ -10,6 +10,7 @@ import HelpPage from "views/HelpPage";
 import DevicePage from "views/DevicesPage";
 import Data from "views/Data";
 import GatewayPage from "views/GatewayPage";
+import HomePage from "views/HomePage";
 
 /* 
       ^- ToDo Landing page -^ 
@@ -54,6 +55,10 @@ function App() {
         <div>
           <NavigationBar />
           <Switch>
+
+            <Route exact path="/">
+              <HomePage />
+            </Route>
 
             <Route path="/devicepage">
               <DevicePage />
