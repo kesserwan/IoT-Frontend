@@ -16,6 +16,7 @@ import {
 } from "reactstrap";
 import { useForm, Controller } from "react-hook-form";
 import { Device } from "./redux/devices-state";
+import DropDown from "../Components/DropDown"
 
 interface DevicesTableProps {
     devices?: Device[];
@@ -33,7 +34,28 @@ interface DevicesFormProps {
     onCreateDevice: (name: string, macAddress: string, ip: string, isGateway: boolean, deviceType: string) => void;
 }
 
-export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProps, { devices }: DevicesTableProps): JSX.Element {
+function findGateways( devices: any ) {
+    console.log(devices)
+    let Gateways: any[] = [];
+    function isGateway(device: any) {
+        console.log('result of isGateway: '+device.isGateway)
+        if(device.isGateway) {
+            Gateways.push(device)
+        }
+        return ""
+    }
+    {devices?.map((device: any) => {        
+        return (
+            <br key={device.id}>
+                {isGateway(device)}
+            </br>
+        )
+    })}
+    return Gateways;
+}
+
+export default function DevicesForm({ loading, onCreateDevice, }: DevicesFormProps, { devices }: DevicesTableProps): JSX.Element {
+    console.log(devices)
     const { errors, control, handleSubmit } = useForm<FormInput>();
     var [state, setState] = React.useState(false);
     var [deviceType, setDeviceType] = React.useState('Select Device Type');
@@ -54,6 +76,8 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                 </div>
         }
     }
+
+    
     
     return <Card className="col-lg-6">
         
@@ -112,7 +136,7 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                             <strong>IP Address</strong> is required
                                 </div>}
                 </FormGroup>
-
+                
                 <FormGroup>  
                     <Dropdown isOpen={state} toggle={() => handleClick(!state)}>
                         <DropdownToggle caret>{deviceType}</DropdownToggle>
@@ -134,6 +158,10 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                             <strong>Device Type</strong> is required
                                 </div>}
                 </FormGroup>
+
+                <DropDown />
+
+                <br />
     
                 <Button
                     type="submit"
@@ -144,6 +172,7 @@ export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProp
                 </Button>
             </Form>
         </CardBody>
-
+        
     </Card>;
+    
 }

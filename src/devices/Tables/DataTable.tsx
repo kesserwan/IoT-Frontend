@@ -5,6 +5,7 @@ import {
 } from "reactstrap";
 import { Device } from "../redux/devices-state";
 import devicesService from "devices/services/devices-service";
+import Axios from "axios";
 
 interface DevicesTableProps {
     devices?: Device[];
@@ -46,6 +47,11 @@ export default function DevicesTable({ devices }: DevicesTableProps): JSX.Elemen
                 {["Delete Device"].map((name) => (
                     <th scope="col">{name}</th>
                 ))}
+
+                {["Edit Device"].map((name) => (
+                    <th scope="col">{name}</th>
+                ))}
+                
             </tr>
         </thead>
         <tbody>
@@ -79,6 +85,17 @@ export default function DevicesTable({ devices }: DevicesTableProps): JSX.Elemen
                             window.location.reload()
                             ) }>Delete</Button>
                         </th>
+                        
+                        <th scope="row">
+                        
+                        <Button outline color="danger" onClick={ (e) =>
+                            
+                            console.log(devicesService.edit(device),
+                            window.location.reload()
+                            ) }>Edit</Button>
+                        </th>
+                        
+
                         
                     </tr>
                 ); 

@@ -28,11 +28,7 @@ import HomePage from "views/HomePage";
     -convert user input into correct formatting (sd:as:vc:ve:34:v3)
  
       ^- ToDo Gateways -^   
- -Text checks *later* :
-    -all the forms have data in them
-    -data is the correct length
-    -convert user input into correct formatting (sd:as:vc:ve:34:v3)
-
+      
       ^- ToDo Data -^ 
       -edit button (edit items directly)   
       -save

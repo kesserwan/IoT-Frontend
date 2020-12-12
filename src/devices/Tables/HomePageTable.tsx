@@ -1,6 +1,7 @@
 import React from "react";
 import { Device } from "../redux/devices-state";
 import { PieChart } from 'react-minimal-pie-chart';
+import { Col, Card, CardTitle, CardText } from "reactstrap";
 
 interface DevicesTableProps {
     devices?: Device[];
@@ -53,28 +54,123 @@ function countGateways ( devices: any ){
     })}
     return totalGateways
 }
+
+function countWiFi ( devices: any ){
+    let totalWiFi = 0;
+    function isWiFi(device: any) {
+        if(device.deviceType === 'WiFi') {
+            totalWiFi++
+        }
+        return ""
+    }
+    {devices?.map((device: any) => {        
+        return (
+            <br key={device.id}>
+                {isWiFi(device)}
+            </br>
+        )
+    })}
+    return totalWiFi
+}
+
+function countZigbee ( devices: any ){
+    let totalZigbee = 0;
+    function isZigbee(device: any) {
+        if(device.deviceType === 'Zigbee') {
+            totalZigbee++
+        }
+        return ""
+    }
+    {devices?.map((device: any) => {        
+        return (
+            <br key={device.id}>
+                {isZigbee(device)}
+            </br>
+        )
+    })}
+    return totalZigbee
+}
+
+function countZWave ( devices: any ){
+    let totalZWave = 0;
+    function isZWave(device: any) {
+        if(device.deviceType === 'Z-Wave') {
+            totalZWave++
+        }
+        return ""
+    }
+    {devices?.map((device: any) => {        
+        return (
+            <br key={device.id}>
+                {isZWave(device)}
+            </br>
+        )
+    })}
+    return totalZWave
+}
     
 
 export default function HomePageTable({ devices }: DevicesTableProps): JSX.Element {
+    
     return <h5>
-        Total Number of Devices/Gateways: { countDevicesGateways( devices ) }
-        <br />
-        Total Number of Devices: { countDevices( devices ) }
-        <br />
-        Total Number of Gateways: { countGateways( devices ) }
-        <br />
-        
-        <PieChart  style={{maxWidth: 500}}
-            label={(data) => data.dataEntry.title}
-            labelStyle={{
-                fontSize: "10px",
-              }}
-            data={[
-                { title: 'WiFi', label: 'test', value: 25, color: '#E38627' },
-                { title: 'Zigbee', value: 15, color: '#C13C37' },
-                { title: 'Z-Wave', value: 20, color: '#6A2135' },
-            ]}
-        />
+        <div style={{display: "flex", flexDirection: "row", flexFlow: "row wrap", margin: "6", width: "80%", marginLeft: '10%', marginRight: '10%' }}>
+            <Col sm="20" style={{width: '33%', minWidth: 270, padding: 5} }>
+                <Card body>
+                    <CardTitle style={{fontSize: '20px'}} > Total Devices/Gateways </CardTitle>
+                    {<CardText> {countDevicesGateways( devices )} </CardText>}
+                </Card>
+            </Col>   
+
+            <Col sm="20" style={{width: '33%', minWidth: 200, padding: 5} }>
+                <Card body>
+                    <CardTitle style={{fontSize: '20px'}} > Total Devices </CardTitle>
+                    {<CardText> {countDevices( devices )} </CardText>}
+                </Card>
+            </Col>   
+
+            <Col sm="20" style={{width: '33%', minWidth: 200, padding: 5} }>
+                <Card body>
+                    <CardTitle style={{fontSize: '20px'}} > Total Gateways </CardTitle>
+                    {<CardText> {countGateways( devices )} </CardText>}
+                </Card>
+            </Col> 
+
+            <Col sm="20" style={{width: '33%', minWidth: 200, padding: 5} }>
+                <Card body>
+                    <CardTitle style={{fontSize: '20px'}} > WiFi Devices </CardTitle>
+                    {<CardText> {countWiFi( devices )} </CardText>}
+                </Card>
+            </Col> 
+
+            <Col sm="20" style={{width: '33%', minWidth: 200, padding: 5} }>
+                <Card body>
+                    <CardTitle style={{fontSize: '20px'}} > Zigbee Devices </CardTitle>
+                    {<CardText> {countZigbee( devices )} </CardText>}
+                </Card>
+            </Col> 
+
+            <Col sm="20" style={{width: '33%', minWidth: 200, padding: 5} }>
+                <Card body>
+                    <CardTitle style={{fontSize: '20px'}} > Z-Wave Devices </CardTitle>
+                    {<CardText> {countZWave( devices )} </CardText>}
+                </Card>
+            </Col> 
+        </div>
+       
+        <div style={{marginLeft: '30%', marginRight: '30%'}}>
+            <br />
+            <PieChart  style={{}}
+                label={(data) => data.dataEntry.title}
+                labelStyle={{
+                    fontSize: "8px",
+                }}
+                data={[
+                    { title: 'WiFi', value: countWiFi( devices ), color: '#aee6e6' },
+                    { title: 'Zigbee', value: countZigbee( devices ), color: '#fbf6f0' },
+                    { title: 'Z-Wave', value: countZWave( devices ), color: '#f3eac2' },
+                ]}
+            />
+        </div>
 
     </h5>;
 

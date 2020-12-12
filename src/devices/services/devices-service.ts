@@ -26,6 +26,13 @@ class DevicesService {
         return id;
     }
 
+
+    edit(device: any) {
+        
+        axios.put("http://localhost:3000/devices/"+device.id, device);
+        return device.id;
+    }
+
     async devices(): Promise<Device[]> {
       
         const result = axios.get("http://localhost:3000/devices/test");
