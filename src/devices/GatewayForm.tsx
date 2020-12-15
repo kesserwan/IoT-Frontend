@@ -20,11 +20,12 @@ interface FormInput {
     macAddress: string;
     ip: string;
     isGateway: boolean;
+    cpID: number;
 }
 
 interface GatewayFormProps {
     loading: boolean;
-    onCreateDevice: (name: string, macAddress: string, ip: string, isGateway: boolean, deviceType: string) => void;
+    onCreateDevice: (name: string, macAddress: string, ip: string, isGateway: boolean, deviceType: string, cpID: number) => void;
 }
 
 export default function GatewayForm({ loading, onCreateDevice }: GatewayFormProps): JSX.Element {
@@ -34,7 +35,7 @@ export default function GatewayForm({ loading, onCreateDevice }: GatewayFormProp
 
     const onSubmitGateway = (data: FormInput) => {
         window.location.reload()
-        onCreateDevice(data.name, data.macAddress, data.ip, true, deviceType);
+        onCreateDevice(data.name, data.macAddress, data.ip, true, deviceType, 0);
     };
 
     const handleClick = (event: React.SetStateAction<boolean>) => {

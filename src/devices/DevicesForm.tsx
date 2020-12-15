@@ -28,11 +28,12 @@ interface FormInput {
     macAddress: string;
     ip: string;
     isGateway: boolean;
+    cpID: number;
 }
 
 interface DevicesFormProps {
     loading: boolean;
-    onCreateDevice: (name: string, macAddress: string, ip: string, isGateway: boolean, deviceType: string) => void;
+    onCreateDevice: (name: string, macAddress: string, ip: string, isGateway: boolean, deviceType: string, cpID: number) => void;
 }
 
 function findGateways( devices: any ) {
@@ -66,7 +67,7 @@ export default function DevicesForm({ loading, onCreateDevice, }: DevicesFormPro
 
     const onSubmitDevice = (data: FormInput) => {
         window.location.reload()
-        onCreateDevice(data.name, data.macAddress, data.ip, false, deviceType);
+        onCreateDevice(data.name, data.macAddress, data.ip, false, deviceType, data.cpID);
     };
 
     function deviceTypeError(){
@@ -160,7 +161,24 @@ export default function DevicesForm({ loading, onCreateDevice, }: DevicesFormPro
                             <strong>IP Address</strong> is required
                                 </div>}
                 </FormGroup>
-                
+
+                <FormGroup>
+                    <Controller
+                        as={Input}
+                        name="cpID"
+                        control={control}
+                        defaultValue=""
+                        placeholder="Gateway ID"
+                        id="cpID"
+                        rules={{ required: true }}
+                    />
+                    {errors.name &&
+                        <div className="alert alert-danger" role="alert">
+                            <strong>Gateway ID</strong> is required
+                                   </div>}
+                </FormGroup>
+
+
                 <FormGroup>  
                     <Dropdown isOpen={state} toggle={() => handleClick(!state)}>
                         <DropdownToggle caret>{deviceType}</DropdownToggle>

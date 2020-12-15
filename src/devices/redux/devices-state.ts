@@ -12,4 +12,5 @@ export interface Device {
     ip?: string;
     isGateway?: boolean;
     deviceType?: string;
+    cpID?: number;
 }
