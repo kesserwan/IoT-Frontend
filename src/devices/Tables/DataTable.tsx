@@ -89,7 +89,6 @@ export default function DevicesTable({ devices }: DevicesTableProps): JSX.Elemen
                         <th scope="row">
                         
                         <Button outline color="danger" onClick={ (e) =>
-                            
                             console.log(devicesService.edit(device),
                             window.location.reload()
                             ) }>Edit</Button>

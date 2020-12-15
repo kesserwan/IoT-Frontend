@@ -113,7 +113,9 @@ function countZWave ( devices: any ){
 export default function HomePageTable({ devices }: DevicesTableProps): JSX.Element {
     
     return <h5>
+        
         <div style={{display: "flex", flexDirection: "row", flexFlow: "row wrap", margin: "6", width: "80%", marginLeft: '10%', marginRight: '10%' }}>
+        {console.log(devices)}
             <Col sm="20" style={{width: '33%', minWidth: 270, padding: 5} }>
                 <Card body>
                     <CardTitle style={{fontSize: '20px'}} > Total Devices/Gateways </CardTitle>
@@ -161,6 +163,7 @@ export default function HomePageTable({ devices }: DevicesTableProps): JSX.Eleme
             <br />
             <PieChart  style={{}}
                 label={(data) => data.dataEntry.title}
+                animate={true}
                 labelStyle={{
                     fontSize: "8px",
                 }}

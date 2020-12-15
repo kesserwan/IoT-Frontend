@@ -16,7 +16,8 @@ import {
 } from "reactstrap";
 import { useForm, Controller } from "react-hook-form";
 import { Device } from "./redux/devices-state";
-import DropDown from "../Components/DropDown"
+import DropDown from "./Tables/DropDown"
+import devicesService from "devices/services/devices-service";
 
 interface DevicesTableProps {
     devices?: Device[];
@@ -55,7 +56,6 @@ function findGateways( devices: any ) {
 }
 
 export default function DevicesForm({ loading, onCreateDevice, }: DevicesFormProps, { devices }: DevicesTableProps): JSX.Element {
-    console.log(devices)
     const { errors, control, handleSubmit } = useForm<FormInput>();
     var [state, setState] = React.useState(false);
     var [deviceType, setDeviceType] = React.useState('Select Device Type');
@@ -76,7 +76,31 @@ export default function DevicesForm({ loading, onCreateDevice, }: DevicesFormPro
                 </div>
         }
     }
+    /*
+    export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProps): JSX.Element {
+        const { register, errors, control, handleSubmit } useForm<FormInput>();
+        const onSubmit = (data: FormInput) => {
+            onCreateDevice(data.name, data.macAddress, data.conName);
+            let value = data.macAddress;
+            let regMac = new RegMac("^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$");
+            if(!regEx.test(value)){
+                console.log("Not Good");
+            }
+        };
+    }*/
 
+    /*
+    export default function DevicesForm({ loading, onCreateDevice }: DevicesFormProps): JSX.Element {
+        const { register, errors, control, handleSubmit } useForm<FormInput>();
+        const onSubmit = (data: FormInput) => {
+            onCreateDevice(data.name, data.ip, data.conName);
+            let value = data.ip;
+            let regIp = new RegIp("^([0-9]{1-3}[.]){3}([0-9]{1-3})$");
+            if(!regEx.test(value)){
+                console.log("Not Good");
+            }
+        };
+    }*/
     
     
     return <Card className="col-lg-6">

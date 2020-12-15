@@ -11,7 +11,7 @@ interface DevicesTableProps {
 }
 
 export default function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
-    
+    {console.log(devices)}
     return <Table className="align-items-center" responsive hover striped>
         <thead className="thead-light">
             <tr>

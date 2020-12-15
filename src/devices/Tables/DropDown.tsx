@@ -1,7 +1,8 @@
 import React from "react";
-import { Device } from "../devices/redux/devices-state";
-import { PieChart } from 'react-minimal-pie-chart';
-import { Col, Card, CardTitle, CardText, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import Axios from "axios";
+import { Device } from "../redux/devices-state";
+import devicesService from "devices/services/devices-service";
 
 interface DevicesTableProps {
     devices?: Device[];
@@ -109,10 +110,8 @@ function countZWave ( devices: any ){
     return totalZWave
 }
 
-
-    
-
 export default function DropDown({ devices }: DevicesTableProps): JSX.Element {
+    {console.log(devices)}
     var [state, setState] = React.useState(false);
     var [deviceType, setDeviceType] = React.useState('Test Drop Down');
 
@@ -128,17 +127,27 @@ export default function DropDown({ devices }: DevicesTableProps): JSX.Element {
         setState(event)
     }
 
+    async function getDevices(){
+        //let test: any = []
+        //const res = await Axios.get('http://localhost:8080/devices')
+        const data = await Axios.get('http://localhost:8080/devices').then(res => res.data);
+        //test = res.data
+        return data
+    }
+
+    
+    
     return (
     <div>
+        
         <Dropdown isOpen={state} toggle={() => handleClick(!state)}>
             <DropdownToggle caret>{deviceType}</DropdownToggle>
             <DropdownMenu>
             {devices?.map((device: any) => {        
-                return (
-                    <br key={device.id}>
-                        {CreateDropDownItem(device.name)}
-                    </br>
-                )
+                return <DropdownItem onClick={() =>  setDeviceType("test1") }>
+                        {device.name}
+                    </DropdownItem>
+               
             })}
             <DropdownItem onClick={() =>  setDeviceType("test1") } dropDownValue="Prod A">
                 test1
