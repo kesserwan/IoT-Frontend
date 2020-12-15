@@ -13,7 +13,7 @@ interface DevicesTableProps {
 export function DevicesTable({ devices }: DevicesTableProps): JSX.Element {
     
     return <Table className="align-items-center" responsive hover striped>
-
+        
         <thead className="thead-light">
             <tr>
                 {["Name"].map((name) => (
