@@ -5,6 +5,7 @@ import { Col, Card, CardTitle, CardText } from "reactstrap";
 
 interface DevicesTableProps {
     devices?: Device[];
+    activeTheme: string;
 }
 
 function countDevicesGateways ( devices: any ){
@@ -136,49 +137,55 @@ function pieZWave(devices: any){
     }
 }    
 
-export default function HomePageTable({ devices }: DevicesTableProps): JSX.Element {
+export default function HomePageTable({ devices, activeTheme }: DevicesTableProps): JSX.Element {
     
+    const darkStyle = {
+        backgroundColor: "rgb(32, 29, 29)",
+        color:"rgb(255, 255, 255)",
+        borderColor:"rgb(255, 255, 255)"
+    }
+
     return <h5>
         
         <div style={{display: "flex", flexDirection: "row", flexFlow: "row wrap", margin: "6", width: "80%", marginLeft: '10%', marginRight: '10%' }}>
         {console.log(devices)}
             <Col sm="20" style={{width: '33%', minWidth: 270, padding: 5} }>
-                <Card body>
+                <Card body style={activeTheme === "dark" ? darkStyle : undefined}>
                     <CardTitle style={{fontSize: '20px'}} > Total Devices/Gateways </CardTitle>
                     {<CardText> {countDevicesGateways( devices )} </CardText>}
                 </Card>
             </Col>   
 
             <Col sm="20" style={{width: '33%', minWidth: 200, padding: 5} }>
-                <Card body>
+                <Card body style={activeTheme === "dark" ? darkStyle : undefined}>
                     <CardTitle style={{fontSize: '20px'}} > Total Devices </CardTitle>
                     {<CardText> {countDevices( devices )} </CardText>}
                 </Card>
             </Col>   
 
             <Col sm="20" style={{width: '33%', minWidth: 200, padding: 5} }>
-                <Card body>
+                <Card body style={activeTheme === "dark" ? darkStyle : undefined}>
                     <CardTitle style={{fontSize: '20px'}} > Total Gateways </CardTitle>
                     {<CardText> {countGateways( devices )} </CardText>}
                 </Card>
             </Col> 
 
             <Col sm="20" style={{width: '33%', minWidth: 200, padding: 5} }>
-                <Card body>
+                <Card body style={activeTheme === "dark" ? darkStyle : undefined}>
                     <CardTitle style={{fontSize: '20px'}} > WiFi Devices </CardTitle>
                     {<CardText> {countWiFi( devices )} </CardText>}
                 </Card>
             </Col> 
 
             <Col sm="20" style={{width: '33%', minWidth: 200, padding: 5} }>
-                <Card body>
+                <Card body style={activeTheme === "dark" ? darkStyle : undefined}>
                     <CardTitle style={{fontSize: '20px'}} > Zigbee Devices </CardTitle>
                     {<CardText> {countZigbee( devices )} </CardText>}
                 </Card>
             </Col> 
 
             <Col sm="20" style={{width: '33%', minWidth: 200, padding: 5} }>
-                <Card body>
+                <Card body style={activeTheme === "dark" ? darkStyle : undefined}>
                     <CardTitle style={{fontSize: '20px'}} > Z-Wave Devices </CardTitle>
                     {<CardText> {countZWave( devices )} </CardText>}
                 </Card>

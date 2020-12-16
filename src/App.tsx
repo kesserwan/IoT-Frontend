@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import NavigationBar from "./Components/NavigationBar";
 import {
@@ -45,15 +45,27 @@ import HomePage from "views/HomePage";
 */
 
 function App() {
+
+  const [theme, setTheme] = useState("light");
+  if(theme === "dark"){
+    document.body.style.backgroundColor = "rgb(32, 29, 29)";
+  }else{
+    document.body.style.backgroundColor = "";
+  }
+
+  const handleThemeChange = (theme: string) => {
+    setTheme(theme);
+  }
+
   return (
     <div className = "backgroundcolorchange">
       <Router>
         <div>
-          <NavigationBar />
+          <NavigationBar activeTheme={theme} onThemeChange={handleThemeChange} />
           <Switch>
 
             <Route exact path="/">
-              <HomePage />
+              <HomePage activeTheme={theme} />
             </Route>
 
             <Route path="/devicepage">

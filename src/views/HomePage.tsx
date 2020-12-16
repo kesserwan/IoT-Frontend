@@ -29,7 +29,11 @@ const mapDispatch = {
 const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-type Props = PropsFromRedux;
+type HomeProps = {
+    activeTheme: string;
+}
+
+type Props = PropsFromRedux & HomeProps;
 
 function Devices({
     loading,
@@ -37,6 +41,7 @@ function Devices({
     createDevice,
     loadDevices,
     notify,
+    activeTheme
 }: Props) {
 
     useEffect(() => {
@@ -50,7 +55,7 @@ function Devices({
                    
 
                     <Row className="mt-5 justify-content-md-center">
-                        <HomePageTable devices={devices} />
+                        <HomePageTable activeTheme={activeTheme} devices={devices} />
                     </Row>
                 </Col>
 

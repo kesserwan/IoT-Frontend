@@ -7,12 +7,26 @@ import {
   Nav,
   NavItem,
   NavLink,
+  CustomInput,
 } from "reactstrap";
 
-export default function NavigationBar(): JSX.Element {
+interface NavigationProps {
+  activeTheme: any;
+  onThemeChange: Function
+}
+
+export default function NavigationBar(props: NavigationProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+
+  const toggleDarkMode = () => {
+    if(props.activeTheme === "light"){
+      props.onThemeChange("dark");
+    }else{
+      props.onThemeChange("light");
+    }
+  }
 
   return (
     <div>
@@ -47,6 +61,8 @@ export default function NavigationBar(): JSX.Element {
             </NavItem>
           </Nav>
         </Collapse>
+        <CustomInput type="switch" id="darkMode" label="Dark Mode" onChange={toggleDarkMode} checked={props.activeTheme === "dark" } />
+
       </Navbar>
     </div>
   );
